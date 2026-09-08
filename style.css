@@ -199,6 +199,12 @@ button {
   font-family: var(--sans);
   font-size: 0.85rem;
   color: var(--accent-rose);
+  opacity: 1;
+  transition: opacity 650ms var(--ease);
+}
+
+.vault-error.is-hidden {
+  opacity: 0;
 }
 
 .vault-card.shake { animation: shake 420ms var(--ease); }

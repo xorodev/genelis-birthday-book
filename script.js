@@ -178,6 +178,7 @@ function setupVault() {
   var form = document.getElementById('vaultForm');
   var card = document.querySelector('.vault-card');
   var errorEl = document.getElementById('vaultError');
+  var errorTimeout = null;
 
   fillSelect(daySelect, 'Día', range(1, 31));
   fillSelect(monthSelect, 'Mes', MONTHS.map(function (name, i) { return { value: i + 1, label: name }; }));
@@ -196,6 +197,7 @@ function setupVault() {
     }
 
     if (d === BIRTH_DAY && m === BIRTH_MONTH && y === BIRTH_YEAR) {
+      if (errorTimeout) clearTimeout(errorTimeout);
       unlockGift();
     } else {
       showError('Fecha incorrecta… inténtelo nuevamente.');
@@ -206,7 +208,17 @@ function setupVault() {
   });
 
   function showError(message) {
+    if (errorTimeout) clearTimeout(errorTimeout);
+
     errorEl.textContent = message;
+    errorEl.classList.remove('is-hidden');
+
+    errorTimeout = setTimeout(function () {
+      errorEl.classList.add('is-hidden');
+      errorTimeout = setTimeout(function () {
+        errorEl.textContent = '';
+      }, 650);
+    }, 3000);
   }
 
   function unlockGift() {
