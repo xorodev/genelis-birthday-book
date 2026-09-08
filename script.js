@@ -1,18 +1,9 @@
 'use strict';
 
-/* ============================================================
-   La fecha que abre el regalo.
-   Si algo no coincide con la fecha real, cámbielo aquí.
-   ============================================================ */
 var BIRTH_DAY = 7;
-var BIRTH_MONTH = 9; // septiembre
-var BIRTH_YEAR = 2008;
+var BIRTH_MONTH = 9;
+var BIRTH_YEAR = 2006;
 
-/* ============================================================
-   El contenido del libro.
-   Cada página es un objeto simple; nada de esto vive en el DOM
-   hasta que le toca ser mostrado (ver renderPage).
-   ============================================================ */
 var PAGES = [
   {
     kind: 'Página 01',
@@ -25,7 +16,7 @@ var PAGES = [
   {
     kind: 'Página 02',
     title: 'Su nombre',
-    poem: 'Poco a poco su nombre se volvió mi palabra favorita,\ntres sílabas que leo al platicar y me cambian el día por completo.\n\nEmely: no necesita más adornos,\nle basta con sonar en mi mente para traerme tranquilidad,\ny desde que la voy conociendo,\nsu nombre siempre me saca una sonrisa.'
+    poem: 'Poco a poco su nombre se volvió mi palabra favorita,\ntres sílabas que leo al platicar y me cambian el día por completo.\n\nGenelis: no necesita más adornos,\nle basta con sonar en mi mente para traerme tranquilidad,\ny desde que la voy conociendo,\nsu nombre siempre me saca una sonrisa.'
   },
   {
     kind: 'Página 03',
@@ -60,7 +51,7 @@ var PAGES = [
   {
     kind: 'Página 08',
     title: 'Lo distinta que es',
-    poem: 'Mientras más platico con usted, más me doy cuenta de que no hay nadie igual.\nSi hubiera un molde para hacer personas como usted,\nel mundo estaría lleno de su luz.\n\nPero no lo hay.\nExiste una sola Emely,\ny qué fortuna tan bonita la mía haber coincidido con usted en esta vida.'
+    poem: 'Mientras más platico con usted, más me doy cuenta de que no hay nadie igual.\nSi hubiera un molde para hacer personas como usted,\nel mundo estaría lleno de su luz.\n\nPero no lo hay.\nExiste una sola Genelis,\ny qué fortuna tan bonita la mía haber coincidido con usted en esta vida.'
   },
   {
     kind: 'Página 09',
@@ -90,6 +81,11 @@ var PAGES = [
   },
   {
     kind: 'Página 13',
+    title: 'El valor de ir despacio',
+    poem: 'Conocerla poco a poco ha sido un camino hermoso,\nsin prisa, valorando cada detalle y cada mensaje que me comparte.\n\nDisfruto mucho este ritmo tranquilo con el que nos vamos conociendo,\nporque las cosas más auténticas y valiosas de la vida\nsiempre se construyen con paciencia y respeto.'
+  },
+  {
+    kind: 'Página 14',
     title: 'Gracias por esta coincidencia',
     paragraphs: [
       'A veces me pongo a pensar en lo increíble que es habernos encontrado a pesar de los kilómetros, entre tantas personas y lugares.',
@@ -97,24 +93,32 @@ var PAGES = [
     ]
   },
   {
-    kind: 'Página 14',
+    kind: 'Página 15',
     title: 'Lo que le deseo',
     poem: 'En este nuevo año de vida le deseo mañanas llenas de paz,\nnoches tranquilas para soñar sin preocupaciones,\ngente a su alrededor que sepa valorar el tesoro que es usted,\ny todo el tiempo del mundo\npara alcanzar cada meta que su corazón se proponga.'
   },
   {
-    kind: 'Página 15',
+    kind: 'Página 16',
     title: 'Más allá de lo hermosa que es',
     paragraphs: [
       'Que usted es sumamente bonita salta a la vista desde el primer segundo. Pero lo que de verdad enamora es descubrir su sencillez, su sentido del humor y la sinceridad que demuestra en cada mensaje.'
     ]
   },
   {
-    kind: 'Página 16',
+    kind: 'Página 17',
     title: 'Usted, en pocas palabras',
     poem: 'Usted es de esas personas que no necesitan hacer ruido para hacerse notar,\nque destacan por su elegancia, su bondad y su luz propia.\n\nSi tuviera que resumir lo que siento al ir conociéndola,\ndiría que es alguien que vale la pena cuidar, admirar y querer despacio.'
   },
   {
-    kind: 'Página 17',
+    kind: 'Página 18',
+    title: 'La ilusión de lo que viene',
+    paragraphs: [
+      'Me emociona pensar en los días que vienen y en todas las conversaciones que aún nos faltan por compartir.',
+      'Cada momento a la distancia es un paso bonito que me hace valorar cada vez más la oportunidad de coincidir con usted.'
+    ]
+  },
+  {
+    kind: 'Página 19',
     title: 'Antes de la última página',
     paragraphs: [
       'Podría seguir escribiendo páginas sobre lo bonito que es ir conociéndola, pero lo mejor es que apenas vamos comenzando y tenemos mucho tiempo por delante.',
@@ -122,11 +126,11 @@ var PAGES = [
     ]
   },
   {
-    kind: 'Página 18',
-    title: '¡Feliz cumpleaños, Emely!',
+    kind: 'Página 20',
+    title: '¡Feliz cumpleaños, Genelis!',
     paragraphs: [
       'Gracias por darme el espacio de formar parte de sus días y por leer estas palabras. No quiero apresurar nada ni poner ninguna presión sobre usted; solo quería que en un día tan importante supiera lo mucho que significa para mí.',
-      'Feliz cumpleaños, Emely. Que estos dieciocho años sean el inicio de una etapa mágica, llena de alegrías y de momentos felices.'
+      'Feliz cumpleaños, Genelis. Que estos veinte años sean el inicio de una etapa mágica, llena de alegrías y de momentos felices.'
     ],
     signature: 'W. Rodríguez.'
   }
@@ -142,9 +146,6 @@ document.addEventListener('DOMContentLoaded', function () {
   setupVault();
 });
 
-/* ============================================================
-   Tema claro / oscuro
-   ============================================================ */
 function setupTheme() {
   var toggle = document.getElementById('themeToggle');
   var metaTheme = document.querySelector('meta[name="theme-color"]');
@@ -166,13 +167,10 @@ function setupTheme() {
     var next = currentTheme() === 'dark' ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
     reflect(next);
-    try { localStorage.setItem('emely-theme', next); } catch (e) { /* si no hay storage, no pasa nada grave */ }
+    try { localStorage.setItem('genelis-theme', next); } catch (e) { }
   });
 }
 
-/* ============================================================
-   La caja fuerte
-   ============================================================ */
 function setupVault() {
   var daySelect = document.getElementById('day');
   var monthSelect = document.getElementById('month');
@@ -200,9 +198,8 @@ function setupVault() {
     if (d === BIRTH_DAY && m === BIRTH_MONTH && y === BIRTH_YEAR) {
       unlockGift();
     } else {
-      showError('Esa fecha no es la correcta… inténtelo otra vez.');
+      showError('Fecha incorrecta… inténtelo nuevamente.');
       card.classList.remove('shake');
-      // Forzar reflow para poder repetir la animación si vuelve a fallar.
       void card.offsetWidth;
       card.classList.add('shake');
     }
@@ -216,7 +213,6 @@ function setupVault() {
     var vaultScreen = document.getElementById('vaultScreen');
     var celebrationScreen = document.getElementById('celebrationScreen');
 
-    // Se elimina del DOM por completo: ya no hace falta y así no ocupa memoria.
     vaultScreen.remove();
 
     celebrationScreen.hidden = false;
@@ -263,12 +259,6 @@ function range(start, end) {
   return out;
 }
 
-/* ============================================================
-   El libro — se renderiza una página a la vez.
-   No se construyen las diez páginas por adelantado: cada
-   cambio de página limpia el contenedor y agrega solo los
-   nodos de la página actual, para mantener el DOM liviano.
-   ============================================================ */
 function openBook() {
   var bookScreen = document.getElementById('bookScreen');
   var pageContainer = document.getElementById('pageContainer');
@@ -357,7 +347,7 @@ function openBook() {
       var restartBtn = document.createElement('button');
       restartBtn.type = 'button';
       restartBtn.className = 'btn-secondary';
-      restartBtn.textContent = 'Volver al principio';
+      restartBtn.textContent = '¡Volver al principio!';
       restartBtn.addEventListener('click', function () { goTo(0); });
       fragment.appendChild(restartBtn);
     }

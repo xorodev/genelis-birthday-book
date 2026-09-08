@@ -1,6 +1,3 @@
-/* ============================================================
-   Tokens — tema claro y oscuro
-   ============================================================ */
 :root {
   --paper: #faf4ec;
   --surface: #fffdf9;
@@ -34,9 +31,6 @@
   :root { --dur-slow: 1ms; --dur-fast: 1ms; }
 }
 
-/* ============================================================
-   Base
-   ============================================================ */
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
 
@@ -86,9 +80,6 @@ button {
   font-family: var(--sans);
 }
 
-/* ============================================================
-   Botón de tema — sutil, fijo, no interfiere con el contenido
-   ============================================================ */
 .theme-toggle {
   position: fixed;
   top: max(0.9rem, env(safe-area-inset-top));
@@ -113,9 +104,6 @@ button {
 [data-theme="dark"] .theme-toggle .icon-sun { display: none; }
 [data-theme="dark"] .theme-toggle .icon-moon { display: block; }
 
-/* ============================================================
-   Pantalla 1 — la caja fuerte
-   ============================================================ */
 .vault-card {
   width: 100%;
   max-width: 26rem;
@@ -220,9 +208,6 @@ button {
   75% { transform: translateX(6px); }
 }
 
-/* ============================================================
-   Pantalla 2 — la revelación
-   ============================================================ */
 .celebration-content {
   max-width: 34rem;
   text-align: center;
@@ -260,9 +245,6 @@ button {
   margin-top: 0.75rem;
 }
 
-/* ============================================================
-   Pantalla 3 — el libro
-   ============================================================ */
 .book-screen {
   flex-direction: column;
   gap: clamp(1rem, 4vh, 2rem);
@@ -363,9 +345,6 @@ button {
   transform: scale(1.3);
 }
 
-/* ============================================================
-   Responsivo — de pantallas muy pequeñas a muy grandes
-   ============================================================ */
 @media (max-width: 360px) {
   .vault-fields { grid-template-columns: 1fr; }
 }
