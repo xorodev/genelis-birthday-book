@@ -396,3 +396,6 @@ function openBook() {
     }
   }
 }
+
+// Other
+console.log("Created by: @xorodev (CipherCoreDev)");
