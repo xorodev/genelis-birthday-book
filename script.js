@@ -191,7 +191,7 @@ function setupVault() {
     var y = parseInt(yearSelect.value, 10);
 
     if (!d || !m || !y) {
-      showError('Falta completar una fecha.');
+      showError('¡Por favor ingrese una fecha válida!');
       return;
     }
 
