@@ -308,6 +308,8 @@ button {
   font-size: 0.9rem;
   color: var(--ink-soft);
   font-style: italic;
+  font-weight: bold;
+  text-decoration: underline;
 }
 
 .book-nav {
