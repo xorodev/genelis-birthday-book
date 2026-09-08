@@ -301,6 +301,7 @@ button {
   font-family: var(--sans);
   font-size: 0.9rem;
   color: var(--ink-soft);
+  font-style: italic;
 }
 
 .book-nav {
